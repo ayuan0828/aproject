@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>电影点评数据分析系统</title>
+    <style>
+        * { margin: 0; padding: 0; }
+
+        html { height: 100%; }
+
+        body { height: 100%; background: #a0e5a0 50% 50% no-repeat; background-size: cover;}
+
+        .logo { width: 550px; height: 30px; margin: 50px auto 80px; background: #a0e5a0 0 0 no-repeat; font-size: 18px;}
+
+        .title{font-size: 36px;}
+
+
+        #menuDiv{height: 350px;}
+
+
+        #contentDiv>div{
+            height: 300px;
+            /*内边距上下为0，左右居中*/
+            margin: 0 auto;
+            border:1px dashed blue;
+            /*属性变化过渡效果*/
+            transition: width 0.1s ease-out;
+        }
+        #list-box{
+            /*悬浮菜单样式*/
+            position: fixed;
+            left: 50%;
+            margin-left: 510px;
+            top: 355px;
+            z-index: 2;
+            /*属性变化过渡效果*/
+            transition: margin-left 0.1s ease-out;
+        }
+        .item{
+            /*悬浮菜单内容样式*/
+            width: 120px;
+            height: 30px;
+            line-height: 24px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        body {text-align: center;} table {margin: auto;}
+
+    </style>
+</head>
+<body>
+
+<div class="logo"><div class="title">欢迎访问电影点评数据分析系统</div></div>
+<table align="center" border=1 cellpadding=1 cellspacing=1 width=500>
+
+
+
+    <tr>
+        <th><img src="../templates/img/fuchou.jpg" width="200" height="130" /></th>
+        <th><img src="../templates/img/dayu.jpg" width="200" height="130" /></th>
+        <th><img src="../templates/img/meigong.png" width="200" height="130" /></th>
+    </tr>
+
+    <tr>
+        <td align="center"><a th:href="@{/movieline}">数据分析1</a></td>
+        <td align="center"><a th:href="@{/movieline2}">数据分析2</a></td>
+        <td align="center"><a th:href="@{/movieline3}">数据分析3</a></td>
+    </tr>
+
+    <tr>
+        <th><img src="../templates/img/moviea.png" width="200" height="130" /></th>
+        <th><img src="../templates/img/moviezong.png" width="200" height="130" /></th>
+        <th><img src="../templates/img/movie.jpg" width="200" height="130" /></th>
+    </tr>
+
+    <tr>
+        <td align="center"><a th:href="@{/movielinea}">数据分析4</a></td>
+        <td align="center"><a th:href="@{/movieci}">数据分析5</a></td>
+        <td align="center"><a th:href="@{/moviepeo}">数据分析6</a></td>
+    </tr>
+
+
+</table>
+<div id="menuDiv">
+    <div id="list-box">
+        <div class="item"><a th:href="@{/findalladmin}">管理员信息管理</a></div>
+        <div class="item"><a th:href="@{/loginOut}">退出</a></div>
+
+    </div>
+</div>
+
+</body>
+</html>

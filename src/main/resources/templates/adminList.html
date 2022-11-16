@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>电影点评数据分析系统</title>
+    <style>
+        * { margin: 0; padding: 0; }
+
+        html { height: 100%; }
+
+        body { height: 100%; background: #a0e5a0 50% 50% no-repeat; background-size: cover;}
+
+        .logo { width: 550px; height: 20px; margin: 50px auto 80px; background: #a0e5a0 0 0 no-repeat; font-size: 18px;}
+
+        .title{font-size: 36px;}
+        body {text-align: center;}
+        table {margin: auto;}
+
+        .a {float: left;width: 600px}
+
+    </style>
+</head>
+<body>
+<div class="logo"><div class="title">用户信息管理</div></div>
+<table width="700" border="1px">
+    <tr height="35">
+        <td>用户编号</td>
+        <td>用户名字</td>
+        <td>用户密码</td>
+        <td>操作</td>
+    </tr>
+    <!--循环遍历集合中的所有对象-->
+    <tr height="30" th:each="admin : ${admins}">
+        <td th:text="${admin.id}">0</td>
+        <td th:text="${admin.username}">admin</td>
+        <td th:text="${admin.password}">1</td>
+        <td>
+            <a th:href="@{/findAdminById(id=${admin.id})}">修改</a> |
+            <a th:href="@{/deleteAdmin(id=${admin.id})}">删除</a></td>
+    </tr>
+</table>
+<br/>
+<a class="a" th:href="@{/toReturn}">返回</a>
+</body>
+</html>

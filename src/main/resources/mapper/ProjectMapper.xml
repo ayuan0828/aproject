@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.aproject.dao.ProjectEntityMapper">
+
+    <insert id="insertProject" parameterType="com.example.aproject.beans.ProjectEntity">
+        insert into project_info (id,user_id,project_name,project_content,created_by,creation_date,last_updated_by,
+        last_update_date)
+        values (#{id},#{userId},#{projectName},#{projectContent},#{createdBy},#{creationDate},
+        #{lastUpdatedBy},#{lastUpdateDate})
+    </insert>
+
+    <update id="updateProject" parameterType="com.example.aproject.beans.ProjectEntity">
+        update   project_info
+        <set>
+            <if test="projectName != null">
+                project_name = #{projectName,jdbcType=VARCHAR},
+            </if>
+            <if test="projectContent != null">
+                project_content = #{projectContent},
+            </if>
+            <if test="createdBy != null">
+                created_by = #{createdBy},
+            </if>
+            <if test="creationDate != null">
+                creation_date = #{creationDate},
+            </if>
+            <if test="lastUpdatedBy != null">
+                last_updated_by = #{lastUpdatedBy},
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = #{lastUpdateDate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteProject" parameterType="java.lang.String">
+        delete from project_info
+        where id = #{projectId}
+    </delete>
+
+    <select id="queryProjectByCondition" parameterType="projectEntity" resultType="map">
+        select id,user_id,project_name as projectName,project_content as projectContent,created_by as createdBy,
+        creation_date as creationDate,last_updated_by as lastUpdatedBy,
+        last_update_date as lastUpdateDate from project_info where 1=1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+        <if test="projectName">
+            and project_name like '%${projectName}%'
+        </if>
+        order by creation_date desc
+    </select>
+
+    <select id="queryAllProject" resultType="map">
+        select p.id,p.project_name,p.project_content,u.id uid,u.username,u.status
+        from project_info p,user_info u
+        where p.user_id = u.id
+    </select>
+</mapper>

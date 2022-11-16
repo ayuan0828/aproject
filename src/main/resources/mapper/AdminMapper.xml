@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.aproject.dao.AdminMapper">
+
+    <resultMap id="userResultMapper" type="com.example.aproject.beans.Admin">
+        <id column="id" jdbcType="INTEGER" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+
+    <!--login-->
+    <select id="findAdminByName" resultMap="userResultMapper">
+        select id,username,password
+        from admin
+        where username = #{username}
+    </select>
+
+    <!--登陆查询-->
+    <select id="findAdmin" parameterType="Admin" resultType="Admin">
+        select * from admin
+        <where>
+            <if test="username!=null and username!='' ">
+                and username = #{username}
+            </if>
+
+            <if test="password!=null and password!='' ">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+
+    <!--添加用户信息-->
+    <insert id="addAdmin" parameterType="Admin" keyProperty="id" useGeneratedKeys="true">
+        insert into admin (username,password)
+        values(#{username},#{password})
+    </insert>
+
+    <!--通过id删除用户信息-->
+    <delete id="deleteAdmin" parameterType="Integer" >
+        delete from admin where id=#{id}
+    </delete>
+
+    <select id="findAdminById"  parameterType="Integer" resultType="Admin" >
+        select * from admin where id=#{id}
+    </select>
+
+    <select id="getAll" resultType="Admin">
+        select * from admin;
+    </select>
+
+    <!--修改用户信息-->
+    <update id="updateAdmin" parameterType="Admin">
+        update admin
+        <set>
+            <if test="username!=null and username !=''">
+                username=#{username},
+            </if>
+            <if test="password !=null and password !=''">
+                password=#{password}
+            </if>
+
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

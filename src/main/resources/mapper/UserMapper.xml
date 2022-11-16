@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.aproject.dao.UserEntityMapper">
+
+  <resultMap id="userResultMapper" type="com.example.aproject.beans.UserEntity">
+    <id column="id" jdbcType="VARCHAR" property="id"></id>
+    <result column="username" property="username"></result>
+    <result column="password" property="password"></result>
+    <result column="start_time" property="startTime"></result>
+    <result column="stop_time" property="stopTime"></result>
+    <result column="status" property="status"></result>
+    <result column="created_by" property="createdBy"></result>
+    <result column="last_updated_by" property="lastUpdatedBy"></result>
+  </resultMap>
+
+  <!--login-->
+  <select id="findUserByName" resultMap="userResultMapper">
+        select id,username,password,start_time,stop_time,status,created_by,
+        creation_date,last_updated_by,last_update_date
+        from user_info
+        where username = #{username}
+  </select>
+
+</mapper>

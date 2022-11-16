@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.aproject.dao.DouBanMapper">
+	<!-- 评分 -->
+    <select id="getQuanqiupingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as quanqiu  from doubanshuju d
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getZhongguoPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as cn  from doubanshuju d where zhipianguojia like '%中国%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getMeiguoPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as usa  from doubanshuju d where zhipianguojia like '%美国%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getRibenPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as jp  from doubanshuju d where zhipianguojia like '%日本%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getYinduPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as yindu  from doubanshuju d where zhipianguojia like '%印度%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getFaguoPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as fg  from doubanshuju d where zhipianguojia like '%法国%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getYingguoPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as eg  from doubanshuju d where zhipianguojia like '%英国%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getYidaliPingfen" resultType="pinfen" >
+		select elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as ydl  from doubanshuju d where zhipianguojia like '%意大利%'
+		group by elt(interval(d.pinfen,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    
+    
+    
+    
+    
+    
+    <!-- 时长 -->
+    <select id="getQuanqiuShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as quanqiu  from doubanshuju d 
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    <select id="getZhongguoShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as cn  from doubanshuju d where zhipianguojia like '%中国%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400') 
+    </select>
+    <select id="getMeiguoShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as usa  from doubanshuju d where zhipianguojia like '%美国%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    <select id="getRibenShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as jp  from doubanshuju d where zhipianguojia like '%日本%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    <select id="getYinduShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as yindu  from doubanshuju d where zhipianguojia like '%印度%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    <select id="getFaguoShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as fg  from doubanshuju d where zhipianguojia like '%法国%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    <select id="getYingguoShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as eg  from doubanshuju d where zhipianguojia like '%英国%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    <select id="getYidaliShichang" resultType="pinfen" >
+		select elt(interval(d.pianchang,0,60,90,120,180,400), '0to60','60to90','90to120', '120to180','180to400') 
+		as stickLevel, count(*) as ydl  from doubanshuju d where zhipianguojia like '%意大利%'
+		group by elt(interval(d.pianchang,0,60,90,120,180,400),'0to60','60to90','90to120', '120to180','180to400')
+    </select>
+    
+    
+    <!-- 类型 -->
+    <select id="getQuanqiuLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as quanqiu  from doubanshuju d
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getZhongguoLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as cn  from doubanshuju d where zhipianguojia like '%中国%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getMeiguoLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as usa  from doubanshuju d where zhipianguojia like '%美国%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getRibenLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as jp  from doubanshuju d where zhipianguojia like '%日本%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getYinduLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as yindu  from doubanshuju d where zhipianguojia like '%印度%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getFaguoLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as fg  from doubanshuju d where zhipianguojia like '%法国%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getYingguoLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as eg  from doubanshuju d where zhipianguojia like '%英国%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    <select id="getYidaliLeixin" resultType="pinfen" >
+		select elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+		as stickLevel, count(*) as ydl  from doubanshuju d where zhipianguojia like '%意大利%'
+		group by elt(interval(d.leixin,2,3,4,5,6,7,8,9,10), '1to2','2to3','3to4', '4to5','5to6', '6to7','7to8','8to9','9to10') 
+    </select>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 年代 -->
+    <select id="getQuanqiuNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as quanqiu  from doubanshuju d
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020')
+    </select>
+    <select id="getZhongguoNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as cn  from doubanshuju d where  zhipianguojia like '%中国%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+    </select>
+    <select id="getMeiguoNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as usa  from doubanshuju d where  zhipianguojia like '%美国%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+    </select>
+    <select id="getRibenNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as jp  from doubanshuju d where  zhipianguojia like '%日本%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020')  
+    </select>
+    <select id="getYinduNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as yindu  from doubanshuju d where  zhipianguojia like '%印度%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+    </select>
+    <select id="getFaguoNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as fg  from doubanshuju d where  zhipianguojia like '%法国%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+    </select>
+    <select id="getYingguoNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as eg  from doubanshuju d where  zhipianguojia like '%英国%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020')  
+    </select>
+    <select id="getYidaliNiandai" resultType="pinfen" >
+		select elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+		as stickLevel, count(*) as ydl from doubanshuju d where  zhipianguojia like '%意大利%'
+		group by elt(interval(d.riqi,1940,1960,1980,2000,2020), '1940to1960','1960to1980','1980to2000', '2000to2020') 
+    </select>
+</mapper>

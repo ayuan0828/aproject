@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>电影评分折线图</title>
+    <script type="text/javascript" src="../static/js/echarts.min.js"></script>
+
+    <style type="text/css">
+        body { height: 100%; background: #a0e5a0 50% 50% no-repeat; background-size: cover;}
+        .container{
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo2" class="container"></div>
+
+
+<script type="text/javascript" >
+    var chartDom = document.getElementById('demo2');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        title: {
+            text: '大鱼海棠评分情况'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['1', '2', '3', '4', '5']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                data: [166, 325, 779, 483, 244],
+                type: 'line'
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+</script>
+上图为电影《大鱼海棠》的各评分人数情况分析结果。由上图可以看出，根据所给数据，给该电影评分为5分的人数较多，但同时评分为1分的人数也很多。<br/>
+<br/><a th:href="@{/toReturn}">返回</a>
+
+</body>
+</html>

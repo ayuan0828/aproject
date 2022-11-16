@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>电影点评分析系统</title>
+    <script type="text/javascript" src="../static/js/echarts.min.js"></script>
+
+    <style type="text/css">
+        * { margin: 0; padding: 0; }
+
+        html { height: 100%; }
+
+        body { height: 100%; background: #a0e5a0 50% 50% no-repeat; background-size: cover;}
+
+        .container{
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo3" class="container"></div>
+
+
+<script type="text/javascript">
+
+
+    console.log("test..")
+    var chartDom1 = document.getElementById('demo3');
+    var myChart1 = echarts.init(chartDom1);
+    var option1;
+
+    var axisdata = ['复仇者联盟', '大鱼海棠', '湄公河行动']
+
+
+    option1 = {
+        title: {
+            text: '评分：'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: axisdata
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1', '2', '3', '4', '5']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '复仇者联盟',
+                type: 'line',
+                stack: 'Total',
+                data: [53, 285, 859, 623, 178]
+            },
+            {
+                name: '大鱼海棠',
+                type: 'line',
+                stack: 'Total',
+                data: [166, 325, 779, 483, 244],
+                itemStyle: {
+                    normal: {
+                        color: '#cd8f8f', //改变折线点的颜色
+                        lineStyle: {
+                            color: '#cd8f8f' //改变折线颜色
+                        }
+                    }
+                }
+            },
+            {
+                name: '湄公河行动',
+                type: 'line',
+                stack: 'Total',
+                data: [28, 62, 378, 854, 659],
+                itemStyle: {
+                    normal: {
+                        color: '#b37bc1', //改变折线点的颜色
+                        lineStyle: {
+                            color: '#b37bc1' //改变折线颜色
+                        }
+                    }
+                }
+            }
+        ]
+    };
+
+    myChart1.setOption(option1);
+
+</script>
+上图为电影的堆积折线图，通过此图可以看出，对于由《复仇者联盟》、《大鱼海棠》、《湄公河行动》这三部电影组成的电影整体来说，评分为3分、4分的人数居多，评分为1分、2分的人数较少，因此可以大致认为这个电影整体的水平较高。当分析的电影数足够多时，可以通过此图来判断已上映电影的整体质量。<br/>
+<br/>
+<a th:href="@{/toReturn}">返回</a>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript" src="../../static/js/echarts.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+
+    <style type="text/css">
+        .divstyle{
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo1" class="divstyle"></div>
+<script type="text/javascript" >
+    $.getJSON("http://127.0.0.1:8809/static/data/movierate.json",function(msg) {
+        var xAxis = []
+        var yAxis = []
+        for (var i = 0; i < msg.data.length; i++) {
+            xAxis.push(msg.data[i].rate)
+            yAxis.push(msg.data[i].count)
+        }
+        var myChart = echarts.init(document.getElementById('demo1'));
+        var option;
+
+        option = {
+            title: {
+                text: '大鱼海棠评分情况'
+            },
+            xAxis: {
+                type: 'category',
+                data: xAxis
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    data: yAxis,
+                    type: 'line'
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    })
+</script>
+</body>
+</html>
